@@ -1,10 +1,5 @@
 import React from "react";
-import { TodoCounter } from "./TodoCounter";
-import { TodoSearch } from "./TodoSearch";
-import { TodoList } from "./TodoList";
-import { TodoItem } from "./TodoItem";
-import { CreateTodoButtom } from "./CreateTodoButtom";
-// import './App.css';
+import { AppUI } from "./AppUI";
 
 const defaultTodos = [
   { text: "Cortar cebolla", completed: true },
@@ -34,7 +29,7 @@ function App() {
     })    
   }
 
-  const completeTodos = (text) =>{
+  const completeTodo = (text) =>{
     const todoIndex = todos.findIndex(todo => todo.text === text);
     const newTodos = [...todos]; // Se clonan los TODOs, creando una nueva lista de TODOs
     newTodos[todoIndex].completed = true; // Acá la estamos marcando al TODO que cumple con las condiciones
@@ -49,33 +44,19 @@ function App() {
     setTodos(newTodos);
   };
 
-  return (
-    <React.Fragment>
-      <TodoCounter 
-        total={totalTodos}
-        completed={completedTodos}
-      />
+  return(
+    <AppUI
+      totalTodos={totalTodos}
+      completedTodos={completedTodos}
+      searchValue={searchValue}
+      setSearchValue={setSearchValue}
+      searchedTodos={searchedTodos}
+      completeTodo={completeTodo}
+      deleteTodo={deleteTodo}
+    />
+  )
 
-      <TodoSearch
-        searchValue={searchValue}
-        setSearchValue={setSearchValue} 
-      />
-
-      <TodoList>
-        {searchedTodos.map((todo) => ( 
-          <TodoItem
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            onComplete={() => completeTodos(todo.text)} // Llama la función enviando el texto de ese TODO 
-            onDelete={() => deleteTodo(todo.text)}
-          />
-        ))}
-      </TodoList>
-
-      <CreateTodoButtom />
-    </React.Fragment>
-  );
+  
 }
 
 export default App;
