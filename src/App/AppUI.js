@@ -5,7 +5,13 @@ import { TodoList } from "../TodoList";
 import { TodoItem } from "../TodoItem";
 import { CreateTodoButtom } from "../CreateTodoButtom";
 
-function AppUI({totalTodos, completedTodos, searchValue, setSearchValue, searchedTodos, completeTodo, deleteTodo}){
+function AppUI({totalTodos, 
+  completedTodos, 
+  searchValue, 
+  setSearchValue, 
+  searchedTodos, 
+  completeTodo, 
+  deleteTodo}){
 
     return (
         <React.Fragment>
